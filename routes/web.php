@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthJWTController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,9 @@ Route::group(['middleware' => 'jwt-auth'], function () {
     Route::get('/users', function(){
         return 'yeeee';
     });
+
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/category', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 });
